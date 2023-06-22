@@ -54,19 +54,18 @@
           <li><a class="nav-link" href="#constructions">Услуги</a></li>
           <li><a class="nav-link" href="#team">Контакты</a></li>
           <li>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                EN
-              </button>
-              <div class="dropdown-menu" aria-labelledby="languageDropdown">
-                <a class="dropdown-item" href="#" data-lang="en">EN</a>
-                <a class="dropdown-item" href="#" data-lang="pl">PL</a>
-                <a class="dropdown-item" href="#" data-lang="ru">RU</a>
-                <a class="dropdown-item" href="#" data-lang="kz">KZ</a>
-                <a class="dropdown-item" href="#" data-lang="uz">UZ</a>
-              </div>
-            </div>
+            <ul>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
+                <div class="dropdown-menu transparent-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#" data-lang="en">EN</a>
+                  <a class="dropdown-item" href="#" data-lang="pl">PL</a>
+                  <a class="dropdown-item" href="#" data-lang="ru">RU</a>
+                  <a class="dropdown-item" href="#" data-lang="kz">KZ</a>
+                  <a class="dropdown-item" href="#" data-lang="uz">UZ</a>
+                </div>
+              </li>
+            </ul>
           </li>
           <!-- <li><a href="projects.html">Projects</a></li>
           <li><a href="blog.html">Blog</a></li> -->
@@ -1360,6 +1359,27 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <!-- Bootstrap JS and jQuery -->
+  <script src="assets/vendor/language/jquery.slim.min.js"></script>
+  <script src="assets/vendor/language/popper.min.js"></script>
+  <script src="assets/vendor/language//bootstrap.min.js"></script>
+
+  <script>
+     // Function to change the language
+    function changeLanguage(lang) {
+      $('#navbarDropdown').text(lang.toUpperCase());
+      $('#content h2').text(langData[lang].welcome);
+      $('#content p:nth-child(2)').text(langData[lang].content);
+      $('#content p:nth-child(3)').html(langData[lang].loremIpsum);
+      $('#footer p:first-child').html(langData[lang].footer);
+    }
+
+    // Event handler for language dropdown menu
+    $('.dropdown-item').click(function () {
+      var lang = $(this).data('lang');
+      changeLanguage(lang);
+    });
+  </script>
 </body>
 
 </html>
