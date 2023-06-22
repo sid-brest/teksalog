@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-language Website Example</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Hello, World!</h1>
+    <p class="lead">This is a multi-language website.</p>
+    
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Multi-language Website</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" data-lang="en">EN</a>
+              <a class="dropdown-item" href="#" data-lang="pl">PL</a>
+              <a class="dropdown-item" href="#" data-lang="ru">RU</a>
+              <a class="dropdown-item" href="#" data-lang="kz">KZ</a>
+              <a class="dropdown-item" href="#" data-lang="uz">UZ</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <!-- Language-specific content -->
+    <div id="content">
+      <h2>Welcome!</h2>
+      <p class="text-muted">English content goes here.</p>
+      <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod neque eu mauris pretium pellentesque. Nulla facilisi. Nulla facilisi. Suspendisse potenti. Fusce commodo, diam ac luctus malesuada, velit tellus dapibus libero, id ultrices ex ex quis lacus. Sed quis ex dignissim, viverra diam vel, aliquet enim. Suspendisse euismod ipsum et luctus rhoncus. Nullam sit amet rutrum mauris, et pharetra purus.</p>
+      <p class="text-muted">Sed quis ex dignissim, viverra diam vel, aliquet enim. Suspendisse euismod ipsum et luctus rhoncus. Nullam sit amet rutrum mauris, et pharetra purus.</p>
+    </div>
+    
+    <hr>
+    
+    <!-- Language-specific footer -->
+    <div id="footer" class="text-muted small">
+      <p>English footer goes here.</p>
+      <p>&copy; 2023 Multi-language Website Example</p>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script>
+    // Language data object
+    var langData = {
+      en: {
+        welcome: 'Welcome!',
+        content: 'English content goes here.',
+        loremIpsum: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod neque eu mauris pretium pellentesque. Nulla facilisi. Nulla facilisi. Suspendisse potenti. Fusce commodo, diam ac luctus malesuada, velit tellus dapibus libero, id ultrices ex exquis lacus. Sed quis ex dignissim, viverra diam vel, aliquet enim. Suspendisse euismod ipsum et luctus rhoncus. Nullam sit amet rutrum mauris, et pharetra purus.',
+        footer: '&copy; 2023 Multi-language Website Example'
+      },
+      pl: {
+        welcome: 'Witaj!',
+        content: 'Polska zawartość tutaj.',
+        loremIpsum: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod neque eu mauris pretium pellentesque. Nulla facilisi. Nulla facilisi. Suspendisse potenti. Fusce commodo, diam ac luctus malesuada, velit tellus dapibus libero, id ultrices ex ex quis lacus. Sed quis ex dignissim, viverra diam vel, aliquet enim. Suspendisse euismod ipsum et luctus rhoncus. Nullam sit amet rutrum mauris, et pharetra purus.',
+        footer: '&copy; 2023 Przykład wielojęzycznej strony internetowej'
+      },
+      // Add more languages here
+    };
+
+    // Function to change the language
+    function changeLanguage(lang) {
+      $('#navbarDropdown').text(lang.toUpperCase());
+      $('#content h2').text(langData[lang].welcome);
+      $('#content p:nth-child(2)').text(langData[lang].content);
+      $('#content p:nth-child(3)').html(langData[lang].loremIpsum);
+      $('#footer p:first-child').html(langData[lang].footer);
+    }
+
+    // Event handler for language dropdown menu
+    $('.dropdown-item').click(function () {
+      var lang = $(this).data('lang');
+      changeLanguage(lang);
+    });
+  </script>
+</body>
+</html>
