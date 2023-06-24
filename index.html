@@ -44,49 +44,25 @@
         <img src="assets/img/logo.webp" alt="">
         <!-- <h1>Teksa Logistic<span>.</span></h1> -->
       </a>
-
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.html" class="active">Главная</a></li>
-          <li><a class="nav-link" href="#alt-services">О компании</a></li>
-          <li><a class="nav-link" href="#constructions">Услуги</a></li>
-          <li><a class="nav-link" href="#team">Контакты</a></li>
-          <li>
-            <ul>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
-                <div class="dropdown-menu transparent-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#" data-lang="en">EN</a>
-                  <a class="dropdown-item" href="#" data-lang="pl">PL</a>
-                  <a class="dropdown-item" href="#" data-lang="ru">RU</a>
-                  <a class="dropdown-item" href="#" data-lang="kz">KZ</a>
-                  <a class="dropdown-item" href="#" data-lang="uz">UZ</a>
-                </div>
-              </li>
-            </ul>
+          <li><a href="#alt-services">О компании</a></li>
+          <li><a href="#constructions">Услуги</a></li>
+          <li><a href="#team">Контакты</a></li>
+          <li class="nav-item ml-auto dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"></a>
+            <div class="dropdown-menu transparent-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" data-lang="en">EN</a>
+              <a class="dropdown-item" href="#" data-lang="pl">PL</a>
+              <a class="dropdown-item" href="#" data-lang="ru">RU</a>
+              <a class="dropdown-item" href="#" data-lang="kz">KZ</a>
+              <a class="dropdown-item" href="#" data-lang="uz">UZ</a>
+            </div>
           </li>
-          <!-- <li><a href="projects.html">Projects</a></li>
-          <li><a href="blog.html">Blog</a></li> -->
-          <!-- <li class="dropdown"><a href="#"><span>Язык</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Русский</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
-                    class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Английский</a></li>
-              <li><a href="#">Польский</a></li>
-              <li><a href="#">Казахский</a></li>
-            </ul>
-          </li> -->
         </ul>
       </nav><!-- .navbar -->
 
@@ -1365,7 +1341,7 @@
   <script src="assets/vendor/language//bootstrap.min.js"></script>
 
   <script>
-     // Function to change the language
+    // Function to change the language
     function changeLanguage(lang) {
       $('#navbarDropdown').text(lang.toUpperCase());
       $('#content h2').text(langData[lang].welcome);
@@ -1380,6 +1356,42 @@
       changeLanguage(lang);
     });
   </script>
+
+  <script>
+    // Get the client's language
+    var clientLang = navigator.language || navigator.userLanguage;
+
+    // Define the dropdown menu titles for each language
+    var dropdownTitles = {
+      'en': 'EN',
+      'pl': 'PL',
+      'ru': 'RU',
+      'kz': 'KZ',
+      'uz': 'UZ'
+    };
+
+    // Get the dropdown menu element
+    var dropdownMenu = document.querySelector('.dropdown-menu');
+
+    // Set the dropdown menu title based on the client's language
+    if (dropdownTitles.hasOwnProperty(clientLang)) {
+      var dropdownTitle = dropdownTitles[clientLang];
+    } else {
+      var dropdownTitle = dropdownTitles['en'];
+    }
+    document.querySelector('.dropdown-toggle').textContent = dropdownTitle;
+
+    // Add an event listener to the dropdown menu items
+    var dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        e.preventDefault();
+        var lang = this.getAttribute('data-lang');
+        document.querySelector('.dropdown-toggle').textContent = dropdownTitles[lang];
+      });
+    });
+  </script>
+
 </body>
 
 </html>
