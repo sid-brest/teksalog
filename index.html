@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Teksa Logistic - Главная</title>
+  <title>Teksa Logistic</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -48,20 +48,25 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="nav-item active" data-en="Home" data-pl="Strona główna" data-ru="Главная" data-uz="Bosh sahifa" data-kz="Басты бет">
+          <li class="nav-item active" data-en="Home" data-pl="Strona główna" data-ru="Главная" data-uz="Bosh sahifa"
+            data-kz="Басты бет">
             <a class="nav-link" href="#hero" id="home-link">Home</a>
           </li>
-          <li class="nav-item" data-en="About" data-pl="O nas" data-ru="О нас" data-uz="Biz haqimizda" data-kz="Біз туралы">
+          <li class="nav-item" data-en="About" data-pl="O nas" data-ru="О нас" data-uz="Biz haqimizda"
+            data-kz="Біз туралы">
             <a class="nav-link" href="#alt-services" id="about-link">About</a>
           </li>
-          <li class="nav-item" data-en="Services" data-pl="Usługi" data-ru="Услуги" data-uz="Xizmatlar" data-kz="Қызметтер">
+          <li class="nav-item" data-en="Services" data-pl="Usługi" data-ru="Услуги" data-uz="Xizmatlar"
+            data-kz="Қызметтер">
             <a class="nav-link" href="#constructions" id="services-link">Services</a>
           </li>
-          <li class="nav-item" data-en="Contacts" data-pl="Kontakt" data-ru="Контакты" data-uz="Bog'lanish" data-kz="Байланыстар">
+          <li class="nav-item" data-en="Contacts" data-pl="Kontakt" data-ru="Контакты" data-uz="Bog'lanish"
+            data-kz="Байланыстар">
             <a class="nav-link" href="#team" id="contacts-link">Contacts</a>
           </li>
 
-          <li class="nav-item ml-auto dropdown" data-en="Language" data-pl="Język" data-ru="Язык" data-uz="Til" data-kz="Тіл">
+          <li class="nav-item ml-auto dropdown" data-en="Language" data-pl="Język" data-ru="Язык" data-uz="Til"
+            data-kz="Тіл">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">Language</a>
             <div class="dropdown-menu transparent-menu" aria-labelledby="navbarDropdown">
@@ -86,8 +91,17 @@
         <div class="row justify-content-center">
           <div class="col-lg-6 text-center">
             <h2 data-aos="fade-down">Teksa Logistic</span></h2>
-            <p data-aos="fade-up">Ваш надежный партнер в сфере грузоперевозок.<br>Мы предлагаем широкий спектр
-              транспортных решений, чтобы удовлетворить разнообразные потребности наших клиентов.</p>
+            <p class="content" data-aos="fade-up" data-en="Your reliable partner in freight transportation."
+              data-pl="Państwa zaufany partner w dziedzinie transportu towarów."
+              data-ru="Ваш надежный партнер в сфере грузоперевозок." data-uz="" data-kz="">Your reliable partner
+              in freight transportation.</p>
+            <p class="content" data-aos="fade-up"
+              data-en="We offer a wide range of transportation solutions to meet the diverse needs of our clients."
+              data-pl="Oferujemy wysokiej jakości usługi transportowe, aby sprostać zróżnicowanym potrzebom naszych klientów."
+              data-ru="Мы предлагаем широкий спектр транспортных решений, чтобы удовлетворить разнообразные потребности наших клиентов."
+              data-uz="" data-kz="">We offer a wide range of transportation solutions to meet the diverse needs of
+              our clients.
+            </p>
             <a data-aos="fade-up" data-aos-delay="200" href="#alt-services" class="btn-get-started">ПОЕХАЛИ</a>
           </div>
         </div>
@@ -1351,43 +1365,50 @@
 
   <script>
     $(document).ready(function () {
-        // Supported languages
-        var supportedLanguages = ['en', 'pl', 'ru', 'uz', 'kz'];
+      // Supported languages
+      var supportedLanguages = ['en', 'pl', 'ru', 'uz', 'kz'];
 
-        // Set default language to English
-        var lang = 'en';
+      // Set default language to English
+      var lang = 'en';
 
-        // Detect browser or OS language
-        var userLang = navigator.language || navigator.userLanguage;
-        userLang = userLang.toLowerCase().substring(0, 2);
+      // Detect browser or OS language
+      var userLang = navigator.language || navigator.userLanguage;
+      userLang = userLang.toLowerCase().substring(0, 2);
 
-        // If the detected language is supported, set it as the default language
-        if (supportedLanguages.includes(userLang)) {
-            lang = userLang;
-        }
+      // If the detected language is supported, set it as the default language
+      if (supportedLanguages.includes(userLang)) {
+        lang = userLang;
+      }
 
-        // Function to update text based on selected language
-        function updateLanguage() {
-            // Update navigation menu
-            $('li.nav-item').each(function () {
-                $(this).find('a.nav-link').text($(this).data(lang));
-            });
-
-            // Update other content on the page
-            // Add selectors for elements containing text that needs to be translated
-            // and update their content using the .data() method as shown above
-        }
-
-        // Event listener for language dropdown
-        $('.dropdown-item').click(function () {
-            lang = $(this).data('lang');
-            updateLanguage();
+      // Function to update text based on selected language
+      function updateLanguage() {
+        // Update navigation menu
+        $('li.nav-item').each(function () {
+          $(this).find('a.nav-link').text($(this).data(lang));
         });
 
-        // Update language on page load
+        // Update content
+        $('.content').each(function () {
+          $(this).text($(this).data(lang));
+        });
+
+        // Update other content on the page
+        // Add selectors for elements containing text that needs to be translated
+        // and update their content using the .data() method as shown above
+      }
+
+      // Event listener for language dropdown
+      $('.dropdown-item').click(function () {
+        lang = $(this).data('lang');
         updateLanguage();
+      });
+
+      // Update language on page load
+      updateLanguage();
     });
-</script>
+  </script>
+
+  </script>
 
 </body>
 
