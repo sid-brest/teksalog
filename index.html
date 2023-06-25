@@ -1351,26 +1351,43 @@
 
   <script>
     $(document).ready(function () {
-      // Set default language to English
-      var lang = 'en';
+        // Supported languages
+        var supportedLanguages = ['en', 'pl', 'ru', 'uz', 'kz'];
 
-      // Function to update text based on selected language
-      function updateLanguage() {
-        // Update navigation menu
-        $('li.nav-item').each(function () {
-          $(this).find('a.nav-link').text($(this).data(lang));
+        // Set default language to English
+        var lang = 'en';
+
+        // Detect browser or OS language
+        var userLang = navigator.language || navigator.userLanguage;
+        userLang = userLang.toLowerCase().substring(0, 2);
+
+        // If the detected language is supported, set it as the default language
+        if (supportedLanguages.includes(userLang)) {
+            lang = userLang;
+        }
+
+        // Function to update text based on selected language
+        function updateLanguage() {
+            // Update navigation menu
+            $('li.nav-item').each(function () {
+                $(this).find('a.nav-link').text($(this).data(lang));
+            });
+
+            // Update other content on the page
+            // Add selectors for elements containing text that needs to be translated
+            // and update their content using the .data() method as shown above
+        }
+
+        // Event listener for language dropdown
+        $('.dropdown-item').click(function () {
+            lang = $(this).data('lang');
+            updateLanguage();
         });
-      }
-      // Event listener for language dropdown
-      $('.dropdown-item').click(function () {
-        lang = $(this).data('lang');
-        updateLanguage();
-      });
 
-      // Update language on page load
-      updateLanguage();
+        // Update language on page load
+        updateLanguage();
     });
-  </script>
+</script>
 
 </body>
 
