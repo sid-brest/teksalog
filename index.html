@@ -48,10 +48,10 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" class="active">Главная</a></li>
-          <li><a href="#alt-services">О компании</a></li>
-          <li><a href="#constructions">Услуги</a></li>
-          <li><a href="#team">Контакты</a></li>
+          <li><a href="index.html" class="active" data-lang="en">Home</a></li>
+          <li><a href="#alt-services" data-lang="en">About Us</a></li>
+          <li><a href="#constructions" data-lang="en">Services</a></li>
+          <li><a href="#team" data-lang="en">Contacts</a></li>
           <li class="nav-item ml-auto dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false"></a>
@@ -1357,40 +1357,89 @@
     });
   </script>
 
-  <script>
-    // Get the client's language
-    var clientLang = navigator.language || navigator.userLanguage;
-
-    // Define the dropdown menu titles for each language
-    var dropdownTitles = {
-      'en': 'EN',
-      'pl': 'PL',
-      'ru': 'RU',
-      'kz': 'KZ',
-      'uz': 'UZ'
-    };
-
-    // Get the dropdown menu element
-    var dropdownMenu = document.querySelector('.dropdown-menu');
-
-    // Set the dropdown menu title based on the client's language
-    if (dropdownTitles.hasOwnProperty(clientLang)) {
-      var dropdownTitle = dropdownTitles[clientLang];
-    } else {
-      var dropdownTitle = dropdownTitles['en'];
+<script>
+  // Define the language-specific menu titles
+  var menuTitles = {
+    'en': {
+      'Home': 'Home',
+      'About Us': 'About Us',
+      'Services': 'Services',
+      'Contacts': 'Contacts',
+      'Language': 'Language'
+    },
+    'pl': {
+      'Home': 'Strona główna',
+      'About Us': 'O nas',
+      'Services': 'Usługi',
+      'Contacts': 'Kontakty',
+      'Language': 'Język'
+    },
+    'ru': {
+      'Home': 'Главная',
+      'About Us': 'О нас',
+      'Services': 'Услуги',
+      'Contacts': 'Контакты',
+      'Language': 'Язык'
+    },
+    'kz': {
+      'Home': 'Басты бет',
+      'About Us': 'Біз туралы',
+      'Services': 'Қызметтер',
+      'Contacts': 'Байланыстар',
+      'Language': 'Тіл'
+    },
+    'uz': {
+      'Home': 'Bosh sahifa',
+      'About Us': 'Biz haqimizda',
+      'Services': 'Xizmatlar',
+      'Contacts': 'Muloqot uchun',
+      'Language': 'Til'
     }
-    document.querySelector('.dropdown-toggle').textContent = dropdownTitle;
+  };
 
-    // Add an event listener to the dropdown menu items
-    var dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
-    dropdownItems.forEach(function (item) {
-      item.addEventListener('click', function (e) {
-        e.preventDefault();
-        var lang = this.getAttribute('data-lang');
-        document.querySelector('.dropdown-toggle').textContent = dropdownTitles[lang];
-      });
-    });
-  </script>
+  // Function to change the menu titles
+  function changeMenuTitles(lang) {
+    var menuLinks = document.querySelectorAll('.navbar a[data-lang]');
+    for (var i = 0; i < menuLinks.length; i++) {
+      var link = menuLinks[i];
+      var linkText = link.getAttribute('data-lang');
+      if (menuTitles[lang][linkText]) {
+        link.textContent = menuTitles[lang][linkText];
+      }
+    }
+    var langText = document.querySelector('.dropdown-toggle');
+    langText.textContent = menuTitles[lang]['Language'];
+  }
+
+  // Function to load the language file or database table
+  function loadLanguageFile(lang) {
+    // You would need to implement this function to load the appropriate language file or database table based on the selected language
+    // For example, you could make an AJAX request to a server-side script that returns the language data as JSON
+    // Alternatively, you could include separate language files on the server and load them dynamically using JavaScript
+  }
+
+  // Determine the user's preferred language based on browser or OS settings
+  var userLang = navigator.language || navigator.userLanguage;
+  if (menuTitles[userLang]) {
+    changeMenuTitles(userLang);
+    loadLanguageFile(userLang);
+  } else {
+    // Default to English if the user's preferred language is not in the list of supported languages
+    changeMenuTitles('en');
+    loadLanguageFile('en');
+  }
+
+  // Add an event listener to the language selection dropdown menu
+  var langDropdown = document.getElementById('navbarDropdown');
+  langDropdown.addEventListener('click', function(event) {
+    event.preventDefault();
+    var selectedLang = event.target.getAttribute('data-lang');
+    if (menuTitles[selectedLang]) {
+      changeMenuTitles(selectedLang);
+      loadLanguageFile(selectedLang);
+    }
+  });
+</script>
 
 </body>
 
