@@ -1,15 +1,3 @@
-/**
-* Template Name: UpConstruction
-* Updated: Mar 10 2023 with Bootstrap v5.2.3
-* Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# Set main reusable colors and fonts using CSS variables
-# Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -108,6 +96,14 @@ section {
   }
 }
 
+.transparent-menu {
+  background-color: transparent;
+  border: none;
+}
+
+.dropdown-item:hover {
+  background-color: transparent;
+}
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
@@ -255,8 +251,15 @@ section {
 }
 
 .header .logo img {
-  max-height: 40px;
+  max-height: 150px;
   margin-right: 6px;
+  
+}
+
+@media only screen and (max-width: 768px) {
+  .header .logo img {
+    max-height: 50px;
+  }
 }
 
 .header .logo h1 {
@@ -270,6 +273,7 @@ section {
 .header .logo h1 span {
   color: var(--color-primary);
 }
+
 
 /*--------------------------------------------------------------
 # Desktop Navigation
