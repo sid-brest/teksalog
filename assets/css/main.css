@@ -253,6 +253,13 @@ section {
 .header .logo img {
   max-height: 150px;
   margin-right: 6px;
+  
+}
+
+@media only screen and (max-width: 768px) {
+  .header .logo img {
+    max-height: 50px;
+  }
 }
 
 .header .logo h1 {
