@@ -1,0 +1,22 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - name: Check server availability
+        run: |
+          echo "Checking server availability..."
+          curl -sSf teksalog.com > /dev/null
+          echo "Server is available."
+      - name: Checkout code
+        uses: actions/checkout@v3
