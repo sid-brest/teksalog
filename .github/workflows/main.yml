@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Check server availability
         run: |
           echo "Checking server availability..."
           curl -sSf teksalog.com > /dev/null
           echo "Server is available."
-      - name: Checkout code
-        uses: actions/checkout@v3
+      
