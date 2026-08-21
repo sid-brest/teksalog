@@ -14,7 +14,7 @@
     <meta http-equiv="content-language" content="pl" />
     <meta
       name="description"
-      content="Państwa zaufany partner w dziedzinie运输 towarów."
+      content="Państwa zaufany partner w dziedzinie transportu towarów."
       name="transport, logistyka, dostawa drogowa, transport międzynarodowy, odprawa celna, magazyn, szybka dostawa, międzynarodowy przewóz towarów, pełen zakres usług transportowych i logistycznych, opracowujemy najbardziej opłacalny schemat transportu, transport drogowy towarów, firma spedycyjna, korzystne ceny, elastyczność, kompleksowe podejście, międzynarodowy przewóz towarów transportem, własna flota, ubezpieczenie, zespół ekspertów, ponad 16000 transportów rocznie"
     />
 
@@ -695,7 +695,7 @@
                         class="card-title content"
                         data-en="Container transportation"
                         data-pl="Transport Kontenerowy"
-                        data-ru="Контейнерные
+                        data-ru="Контейнерные
                     перевозки"
                         data-uz=""
                         data-kz=""
@@ -707,7 +707,7 @@
                         data-en="We provide reliable and efficient container transportation services worldwide, offering optimal solutions for various types of cargo."
                         data-pl="Oferujemy niezawodny i wydajny transport kontenerowy na całym świecie, zapewniając optymalne rozwiązania dla różnych rodzajów towarów. "
                         data-ru="Мы предоставляем надежные
-                    и эффективные контейнерные перевозки по всему миру, обеспечивая
+                    и эффективные контейнерные перевозки по всему миру, обеспечивая
                     оптимальные решения для различных видов грузов."
                         data-uz=""
                         data-kz=""
@@ -740,7 +740,7 @@
                         class="card-title content"
                         data-en="Warehousing service"
                         data-pl="Usługi magazynowe"
-                        data-ru="Складской сервис"
+                        data-ru="Складской сервис"
                         data-uz=""
                         data-kz=""
                       >
@@ -862,6 +862,14 @@
       <!-- End Constructions Section -->
 
       <!-- ======= Our Team Section (Offices) ======= -->
+      <!--
+        Гео-таргетинг офисов:
+        - Офис "office-poland" виден по умолчанию (для всех, кроме BY/RU).
+        - Офисы "office-byru-only" (Беларусь, Россия x2, Казахстан) скрыты по умолчанию
+          классом Bootstrap "d-none" и показываются скриптом ниже, если IP посетителя
+          определяется как Беларусь (BY) или Россия (RU).
+        - Офис "office-uzbekistan" виден всегда, независимо от геолокации.
+      -->
       <section id="team" class="team section-bg">
         <div class="container" data-aos="fade-up">
           <div class="section-header">
@@ -878,7 +886,9 @@
           </div>
 
           <div class="row gy-5">
+            <!-- Poland: visible by default, hidden for BY/RU visitors -->
             <div
+              id="office-poland"
               class="col-lg-4 col-md-6 member"
               data-aos="fade-up"
               data-aos-delay="100"
@@ -936,12 +946,12 @@
                 </p>
               </div>
             </div>
-            <!-- End Team Member -->
+            <!-- End Team Member: Poland -->
 
-            <!-- BELARUS OFFICE - REMOVED (комментарий для удаления) -->
-            <!--
+            <!-- Belarus: hidden by default, shown only for BY/RU visitors -->
             <div
-              class="col-lg-4 col-md-6 member"
+              id="office-belarus"
+              class="col-lg-4 col-md-6 member office-byru-only d-none"
               data-aos="fade-up"
               data-aos-delay="200"
             >
@@ -998,13 +1008,12 @@
                 </p>
               </div>
             </div>
-            -->
-            <!-- End Team Member (Belarus removed) -->
+            <!-- End Team Member: Belarus -->
 
-            <!-- RUSSIA OFFICE 1 (Naro-Fominsk) - REMOVED -->
-            <!--
+            <!-- Russia (Naro-Fominsk): hidden by default, shown only for BY/RU visitors -->
             <div
-              class="col-lg-4 col-md-6 member"
+              id="office-russia-1"
+              class="col-lg-4 col-md-6 member office-byru-only d-none"
               data-aos="fade-up"
               data-aos-delay="300"
             >
@@ -1061,13 +1070,12 @@
                 </p>
               </div>
             </div>
-            -->
-            <!-- End Team Member (Russia Naro-Fominsk removed) -->
+            <!-- End Team Member: Russia (Naro-Fominsk) -->
 
-            <!-- RUSSIA OFFICE 2 (Moscow) - REMOVED -->
-            <!--
+            <!-- Russia (Moscow): hidden by default, shown only for BY/RU visitors -->
             <div
-              class="col-lg-4 col-md-6 member"
+              id="office-russia-2"
+              class="col-lg-4 col-md-6 member office-byru-only d-none"
               data-aos="fade-up"
               data-aos-delay="400"
             >
@@ -1124,11 +1132,12 @@
                 </p>
               </div>
             </div>
-            -->
-            <!-- End Team Member (Russia Moscow removed) -->
+            <!-- End Team Member: Russia (Moscow) -->
 
+            <!-- Kazakhstan: hidden by default, shown only for BY/RU visitors -->
             <div
-              class="col-lg-4 col-md-6 member"
+              id="office-kazakhstan"
+              class="col-lg-4 col-md-6 member office-byru-only d-none"
               data-aos="fade-up"
               data-aos-delay="500"
             >
@@ -1185,9 +1194,11 @@
                 </p>
               </div>
             </div>
-            <!-- End Team Member -->
+            <!-- End Team Member: Kazakhstan -->
 
+            <!-- Uzbekistan: always visible, regardless of geolocation -->
             <div
+              id="office-uzbekistan"
               class="col-lg-4 col-md-6 member"
               data-aos="fade-up"
               data-aos-delay="600"
@@ -1245,7 +1256,7 @@
                 </p>
               </div>
             </div>
-            <!-- End Team Member -->
+            <!-- End Team Member: Uzbekistan -->
           </div>
         </div>
       </section>
@@ -1352,6 +1363,87 @@
         // Update language on page load
         updateLanguage();
       });
+    </script>
+
+    <!--
+      ======= Гео-таргетинг офисов по IP =======
+      Логика:
+        - Определяем страну посетителя по IP через публичный API геолокации.
+        - Если страна = Беларусь (BY) или Россия (RU):
+            показываем все офисы, КРОМЕ Польши
+            (Беларусь, Россия x2, Казахстан, Узбекистан).
+        - Для всех остальных стран (по умолчанию, в т.ч. если геолокация не удалась):
+            показываем только Польшу и Узбекистан.
+      На случай сбоя запроса геолокации (таймаут, блокировка, недоступность API)
+      используется fallback-сервис, а если и он не сработал — остаётся состояние
+      по умолчанию (Польша + Узбекистан), заданное в HTML/CSS.
+    -->
+    <script>
+      (function () {
+        var BYRU_COUNTRIES = ["BY", "RU"];
+        var GEO_TIMEOUT_MS = 4000;
+
+        function showByRuOffices() {
+          document
+            .querySelectorAll(".office-byru-only")
+            .forEach(function (el) {
+              el.classList.remove("d-none");
+            });
+          var poland = document.getElementById("office-poland");
+          if (poland) {
+            poland.classList.add("d-none");
+          }
+        }
+
+        function fetchWithTimeout(url, timeoutMs) {
+          var controller = new AbortController();
+          var timer = setTimeout(function () {
+            controller.abort();
+          }, timeoutMs);
+          return fetch(url, { signal: controller.signal }).finally(function () {
+            clearTimeout(timer);
+          });
+        }
+
+        function applyGeoTargeting(countryCode) {
+          if (!countryCode) return;
+          countryCode = String(countryCode).toUpperCase();
+          if (BYRU_COUNTRIES.indexOf(countryCode) !== -1) {
+            showByRuOffices();
+          }
+          // Для всех остальных стран HTML/CSS уже в нужном состоянии по умолчанию:
+          // видны Poland + Uzbekistan, скрыты Belarus/Russia x2/Kazakhstan.
+        }
+
+        function tryPrimaryProvider() {
+          return fetchWithTimeout("https://ipapi.co/json/", GEO_TIMEOUT_MS)
+            .then(function (res) {
+              if (!res.ok) throw new Error("primary geo provider failed");
+              return res.json();
+            })
+            .then(function (data) {
+              applyGeoTargeting(data && data.country_code);
+            });
+        }
+
+        function tryFallbackProvider() {
+          return fetchWithTimeout("https://ipwho.is/", GEO_TIMEOUT_MS)
+            .then(function (res) {
+              if (!res.ok) throw new Error("fallback geo provider failed");
+              return res.json();
+            })
+            .then(function (data) {
+              applyGeoTargeting(data && data.country_code);
+            });
+        }
+
+        tryPrimaryProvider().catch(function () {
+          tryFallbackProvider().catch(function () {
+            // Оба провайдера недоступны — остаётся состояние по умолчанию
+            // (Poland + Uzbekistan), заданное в разметке.
+          });
+        });
+      })();
     </script>
   </body>
 </html>
