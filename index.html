@@ -721,10 +721,10 @@
   </script>
 
   <script>
-    fetch('http://ip-api.com/json/')
+    fetch('https://ipapi.co/json/')
       .then(function(response) { return response.json(); })
       .then(function(data) {
-        var country = data.countryCode;
+        var country = data.country_code;
         if (country === 'BY' || country === 'RU') {
           $('.office-by-ru').show();
           $('.office-all').show();
