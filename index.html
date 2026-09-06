@@ -473,7 +473,7 @@
 
         <div class="row gy-5">
 
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-4 col-md-6 member office-pl-other" data-aos="fade-up" data-aos-delay="100">
             <div class="member-img">
               <img src="assets/img/team/team-1.webp" class="img-fluid" alt="">
               <div class="social">
@@ -493,7 +493,7 @@
             </div>
           </div><!-- End Team Member -->
 
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-4 col-md-6 member office-by-ru" data-aos="fade-up" data-aos-delay="200">
             <div class="member-img">
               <img src="assets/img/team/team-2.webp" class="img-fluid" alt="">
               <div class="social">
@@ -514,7 +514,7 @@
             </div>
           </div><!-- End Team Member -->
 
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-4 col-md-6 member office-by-ru" data-aos="fade-up" data-aos-delay="300">
             <div class="member-img">
               <img src="assets/img/team/team-3.webp" class="img-fluid" alt="">
               <div class="social">
@@ -534,7 +534,7 @@
             </div>
           </div><!-- End Team Member -->
 
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="400">
+          <div class="col-lg-4 col-md-6 member office-by-ru" data-aos="fade-up" data-aos-delay="400">
             <div class="member-img">
               <img src="assets/img/team/team-4.webp" class="img-fluid" alt="">
               <div class="social">
@@ -555,7 +555,7 @@
             </div>
           </div><!-- End Team Member -->
 
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="500">
+          <div class="col-lg-4 col-md-6 member office-by-ru" data-aos="fade-up" data-aos-delay="500">
             <div class="member-img">
               <img src="assets/img/team/team-5.webp" class="img-fluid" alt="">
               <div class="social">
@@ -577,7 +577,7 @@
             </div>
           </div><!-- End Team Member -->
 
-          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="600">
+          <div class="col-lg-4 col-md-6 member office-all" data-aos="fade-up" data-aos-delay="600">
             <div class="member-img">
               <img src="assets/img/team/team-6.webp" class="img-fluid" alt="">
               <div class="social">
@@ -613,17 +613,39 @@
             </div>
           </div><!-- End footer info column-->
 
-          <div class="col-lg-2 col-md-3 footer-links">
+          <!-- Poland + Others -->
+          <div class="col-lg-2 col-md-3 footer-links footer-pl-other">
             <h4 class="content" data-en="Warszawska 57, 21-400, Łuków, Poland"
               data-pl="Warszawska 57, 21-400, Łuków, Polska"
               data-ru="Warszawska 57, 21-400, Łuków, Польша" data-uz="" data-kz="">Warszawska 57, 21-400, Łuków, Poland</h4>
-
           </div>
-          <div class="col-lg-2 col-md-3 footer-links">
+          <div class="col-lg-2 col-md-3 footer-links footer-pl-other">
             <h4><a href="tel:+48500387854">+48 500 387 854</a></h4>
           </div>
-          <div class="col-lg-2 col-md-3 footer-links">
+          <div class="col-lg-2 col-md-3 footer-links footer-pl-other">
             <h4><a href="mailto:info@teksalog.com">info@teksalog.com</a></h4>
+          </div>
+
+          <!-- Belarus -->
+          <div class="col-lg-2 col-md-3 footer-links footer-by" style="display:none;">
+            <h4>224005 Брест, Беларусь</h4>
+          </div>
+          <div class="col-lg-2 col-md-3 footer-links footer-by" style="display:none;">
+            <h4><a href="tel:+375297224568">+375 29 722 45 68</a></h4>
+          </div>
+          <div class="col-lg-2 col-md-3 footer-links footer-by" style="display:none;">
+            <h4><a href="mailto:by@teksalog.com">by@teksalog.com</a></h4>
+          </div>
+
+          <!-- Russia -->
+          <div class="col-lg-2 col-md-3 footer-links footer-ru" style="display:none;">
+            <h4>127273 Москва, Россия</h4>
+          </div>
+          <div class="col-lg-2 col-md-3 footer-links footer-ru" style="display:none;">
+            <h4><a href="tel:+79852653898">+7 985 265 38 98</a></h4>
+          </div>
+          <div class="col-lg-2 col-md-3 footer-links footer-ru" style="display:none;">
+            <h4><a href="mailto:msk@teksalog.com">msk@teksalog.com</a></h4>
           </div>
         </div>
       </div>
@@ -631,7 +653,7 @@
     <div class="footer-legal text-center position-relative">
       <div class="container">
         <div class="copyright">
-          <span>Teksa Logistic &copy; </span>2023
+          <span>Teksa Logistic &copy; </span>2023-2026
         </div>
         <div class="credits">
         </div>
@@ -696,6 +718,35 @@
       // Update language on page load
       updateLanguage();
     });
+  </script>
+
+  <script>
+    fetch('http://ip-api.com/json/')
+      .then(function(response) { return response.json(); })
+      .then(function(data) {
+        var country = data.countryCode;
+        if (country === 'BY' || country === 'RU') {
+          $('.office-by-ru').show();
+          $('.office-all').show();
+          $('.office-pl-other').hide();
+        } else {
+          $('.office-pl-other').show();
+          $('.office-all').show();
+          $('.office-by-ru').hide();
+        }
+        $('.footer-by, .footer-ru, .footer-pl-other').hide();
+        if (country === 'BY') {
+          $('.footer-by').show();
+        } else if (country === 'RU') {
+          $('.footer-ru').show();
+        } else {
+          $('.footer-pl-other').show();
+        }
+      })
+      .catch(function() {
+        $('.member').show();
+        $('.footer-by, .footer-ru, .footer-pl-other').show();
+      });
   </script>
 </body>
 
