@@ -628,7 +628,9 @@
 
           <!-- Belarus -->
           <div class="col-lg-2 col-md-3 footer-links footer-by" style="display:none;">
-            <h4>224005 Брест, Беларусь</h4>
+            <h4 class="content" data-en="GOBK, 7/1&lt;br&gt;224005 Brest, Belarus"
+              data-pl="GOBK, 7/1&lt;br&gt;224005 Brześć, Białoruś"
+              data-ru="ГОБК, 7/1&lt;br&gt;224005 Брест, Беларусь">ГОБК, 7/1<br>224005 Брест, Беларусь</h4>
           </div>
           <div class="col-lg-2 col-md-3 footer-links footer-by" style="display:none;">
             <h4><a href="tel:+375297224568">+375 29 722 45 68</a></h4>
@@ -639,7 +641,9 @@
 
           <!-- Russia -->
           <div class="col-lg-2 col-md-3 footer-links footer-ru" style="display:none;">
-            <h4>127273 Москва, Россия</h4>
+            <h4 class="content" data-en="Berezovaya Alley, 5A, building 1-3&lt;br&gt;127273 Moscow, Russia"
+              data-pl="Berezovaya Alley, 5A, budynek 1-3&lt;br&gt;127273 Moskwa, Rosja"
+              data-ru="Березовая Аллея, 5А, строение 1-3&lt;br&gt;127273 Москва, Россия">Березовая Аллея, 5А, строение 1-3<br>127273 Москва, Россия</h4>
           </div>
           <div class="col-lg-2 col-md-3 footer-links footer-ru" style="display:none;">
             <h4><a href="tel:+79852653898">+7 985 265 38 98</a></h4>
@@ -707,7 +711,7 @@
         });
         // Update content
         $('.content').each(function () {
-          $(this).text($(this).data(lang));
+          $(this).html($(this).data(lang));
         });
       }
       // Event listener for language dropdown
@@ -721,7 +725,7 @@
   </script>
 
   <script>
-    fetch('https://ipapi.co/json/')
+    fetch('https://ipwho.is/')
       .then(function(response) { return response.json(); })
       .then(function(data) {
         var country = data.country_code;
@@ -745,7 +749,7 @@
       })
       .catch(function() {
         $('.member').show();
-        $('.footer-by, .footer-ru, .footer-pl-other').show();
+        $('.footer-pl-other').show();
       });
   </script>
 </body>
